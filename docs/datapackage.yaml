@@ -1,0 +1,258 @@
+profile: tabular-data-package
+resources:
+  - name: corridas
+    type: table
+    title: Corridas do TaxiGov
+    description: Todas as corridas do TaxiGov
+    profile: tabular-data-resource
+    path: taxigov-corridas-completo.csv
+    scheme: file
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    hash: sha256:b7322c0ea243d9a6fa5a3f0da47266d623ed9d918e4d51dc842bc66d1662e653
+    bytes: 521515171
+    fields: 41
+    rows: 1034895
+    schema:
+      fields:
+        - name: base_origem
+          type: string
+          title: Base de origem
+          description: Identificação da base de dados de origem. Normalmente contém
+            a sigla do Estado e um número de versão, ex. TAXIGOV_DF_3.
+          constraints:
+            required: true
+            minLength: 10
+            maxLength: 100
+        - name: qru_corrida
+          type: integer
+          title: Código da Corrida
+          description: Código que identifica a corrida unicamente dentro da base de
+            origem. Não é garantida a ausência de colisão com outros identificadores
+            em outras bases de origem.
+          constraints:
+            required: true
+            minimum: 0
+        - name: orgao_nome
+          type: string
+          title: Nome do órgão ou entidade
+          description: Nome do órgão, por extenso, sem abreviações ou siglas, conforme
+            consta no SIORG.
+          constraints:
+            required: true
+        - name: orgao_codigo_siorg
+          type: integer
+          title: Código SIORG do órgão
+          description: Código oficial do órgão no SIORG.
+          constraints:
+            required: true
+            minimum: 0
+        - name: orgao_categoria
+          type: string
+          title: Categoria do órgão
+          description: 'Categoria do órgão. DIRETA: órgão da administração direta
+            do poder executivo federal. INDIRETA: entidade da administração pública
+            federal indireta, tais como autarquias e fundações públicas.'
+          constraints:
+            required: true
+            enum:
+              - DIRETA
+              - INDIRETA
+        - name: unidade_administrativa_nome
+          type: string
+          title: Nome da unidade administrativa
+          description: Nome da unidade administrativa, por extenso, sem abreviações
+            ou siglas, conforme consta no SIORG, quando disponível. Pode representar
+            o nível mais específico na hierarquia do órgão que autorizou a corrida
+            ou algum nível superior a este.
+        - name: unidade_administrativa_codigo_siorg
+          type: integer
+          title: Código SIORG da unidade administrativa
+          description: Código oficial da unidade administrativa no SIORG.
+          constraints:
+            minimum: 0
+        - name: status
+          type: string
+          title: Status
+          description: 'Status da corrida. CANCELADA: A corrida foi cancelada pelo
+            usuário ou órgão solicitante. CONCLUÍDA: A corrida foi concluída. CONTESTADA:
+            A realização ou o registro da corrida foi contestado pelo órgão solicitante.
+            EM ANDAMENTO: A corrida encontrava-se em andamento no momento da coleta
+            dos dados. INTERNO: Verificação interna.'
+          constraints:
+            required: true
+            enum:
+              - EM ANDAMENTO
+              - CANCELADA
+              - CONCLUÍDA
+              - CONTESTADA
+              - INTERNO
+        - name: motivo
+          type: string
+          title: Motivo
+          description: 'Motivo da corrida: Reunião; Transporte de documentos / materiais;
+            Capacitação / evento; Audiência / despacho; Serviço externo / técnico;
+            Pesquisa de preço de mercado; Deslocamento embarque / desembarque; Deslocamento
+            residência / trabalho; Outros.'
+          constraints:
+            enum:
+              - Reunião
+              - Transporte de documentos / materiais
+              - Capacitação / evento
+              - Audiência / despacho
+              - Serviço externo / técnico
+              - Pesquisa de preço de mercado
+              - Deslocamento embarque / desembarque
+              - Deslocamento residência / trabalho
+              - Outros
+        - name: justificativa
+          type: string
+          title: Justificativa
+          description: Texto da justificativa apresentada para a corrida.
+        - name: km_total
+          type: number
+          title: Distância total
+          description: Distância total percorrida, em km, registrados na base de origem.
+          constraints:
+            minimum: 0
+        - name: km_rota_calculada
+          type: number
+          title: Distância calculada
+          description: Distância calculada prevista, em km, com base em um mapa e
+            nos pontos registrados de origem e destino.
+          constraints:
+            minimum: 0
+        - name: valor_corrida
+          type: number
+          title: Valor
+          description: Valor cobrado pela corrida, em reais.
+          constraints:
+            minimum: 0
+        - name: data_abertura
+          type: datetime
+          title: Data de abertura
+          description: Data e hora de abertura, representando o momento em que a corrida
+            foi solicitada.
+        - name: data_despacho
+          type: datetime
+          title: Data de despacho
+          description: Data e hora de despacho, representando o momento em que um
+            veículo e motorista foram atribuídos à solicitação de corrida.
+        - name: data_local_embarque
+          type: datetime
+          title: Data no local de embarque
+          description: Data e hora no local de embarque, representando o momento em
+            que o veículo chegou ao local de origem solicitado.
+        - name: data_inicio
+          type: datetime
+          title: Data de início
+          description: Data e hora do início da corrida, representando o momento em
+            que os passageiros embarcaram e o veículo iniciou a corrida.
+        - name: data_final
+          type: datetime
+          title: Data final
+          description: Data e hora do final da corrida, representando o momento em
+            que o veículo chegou ao seu destino.
+        - name: data_cancelamento
+          type: datetime
+          title: Data de cancelamento
+          description: Data e hora de cancelamento, representando o momento em que
+            a corrida foi cancelada, caso isso tenha ocorrido.
+        - name: origem_endereco
+          type: string
+          title: Endereço de origem
+          description: Endereço do local de origem da corrida, podendo representar
+            somente o logradouro ou o endereço completo.
+        - name: origem_bairro
+          type: string
+          title: Bairro de origem
+          description: Bairro do local de origem da corrida.
+        - name: origem_cidade
+          type: string
+          title: Cidade de origem
+          description: Município ou cidade do local de origem da corrida.
+        - name: origem_uf
+          type: string
+          title: UF de origem
+          description: Sigla da unidade federativa do local de origem da corrida.
+        - name: destino_solicitado_endereco
+          type: string
+          title: Endereço do destino solicitado
+          description: Endereço do local de destino da corrida, informado na solicitação,
+            podendo representar somente o logradouro ou o endereço completo.
+        - name: destino_efetivo_endereco
+          type: string
+          title: Endereço do destino efetivo
+          description: Endereço do local de destino da corrida, informado na efetiva
+            conclusão da corrida, podendo representar somente o logradouro ou o endereço
+            completo.
+        - name: origem_latitude
+          type: number
+          title: Latitude de origem
+          description: Coordenada da latitude do local de origem da corrida.
+        - name: origem_longitude
+          type: number
+          title: Longitude de origem
+          description: Coordenada da longitude do local de origem da corrida.
+        - name: destino_solicitado_latitude
+          type: number
+          title: Latitude do destino solicitado
+          description: Coordenada da latitude do local de destino da corrida, informadas
+            na solicitação.
+        - name: destino_solicitado_longitude
+          type: number
+          title: Longitude do destino solicitado
+          description: Coordenada da longitude do local de destino da corrida, informadas
+            na solicitação.
+        - name: destino_efetivo_latitude
+          type: number
+          title: Latitude do destino efetivo
+          description: Coordenada da latitude do local de destino da corrida, medidas
+            na efetiva conclusão da corrida.
+        - name: destino_efetivo_longitude
+          type: number
+          title: Longitude do destino efetivo
+          description: Coordenada da longitude do local de destino da corrida, medidas
+            na efetiva conclusão da corrida.
+        - name: avaliacao_usuario_nota
+          type: number
+          title: Nota de avaliação pelo usuário
+          description: Nota atribuída pelo usuário na avaliação da corrida.
+        - name: avaliacao_usuario_texto
+          type: string
+          title: Texto da avaliação pelo usuário
+          description: Texto escrito pelo usuário na avaliação da corrida.
+        - name: veiculo_fabricante
+          type: string
+          title: Fabricante do veículo
+          description: Nome do fabricante do veículo.
+        - name: veiculo_modelo
+          type: string
+          title: Modelo do veículo
+          description: Nome do modelo do veículo.
+        - name: veiculo_ano_fabricacao
+          type: integer
+          title: Ano de fabricação do veículo
+          description: Ano de fabricação do veículo.
+        - name: veiculo_ano_modelo
+          type: integer
+          title: Ano do modelo do veículo
+          description: Ano do modelo do veículo.
+        - name: veiculo_cor
+          type: string
+          title: Cor do veículo
+          description: Cor do veículo.
+        - name: veiculo_placa
+          type: string
+          title: Placa do veículo
+          description: Placa do veículo.
+        - name: ateste_setorial_data
+          type: datetime
+          title: Data do ateste setorial
+          description: Data e hora em que o setor responsável realizou o ateste, verificando
+            que a corrida ocorreu sem suspeitas.
+        - name: conteste_info
+          type: string
+          title: Informações de contestação
+          description: Texto de contestação da corrida ou de seu registro.

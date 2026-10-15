@@ -1,0 +1,7 @@
+# Projeto testado com Python 3.11
+tensorflow>=2.21.0
+numpy>=2.0
+pandas>=2.2
+matplotlib>=3.9
+optuna>=5.0.0
+holidays>=0.106

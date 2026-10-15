@@ -1,0 +1,18 @@
+{
+  "arch": "SimpleRNN",
+  "best_val_loss": 0.3293875753879547,
+  "best_params": {
+    "lr": 0.0007086624038005821,
+    "n_camadas": 1,
+    "unidades": 256,
+    "dropout": 0.0,
+    "recurrent_dropout": 0.0,
+    "l2": 1.5138805956202804e-05,
+    "batch_size": 16,
+    "otimizador": "rmsprop",
+    "bidirecional": true
+  },
+  "n_trials": 15,
+  "n_podados": 2,
+  "tempo_s": 346.6
+}

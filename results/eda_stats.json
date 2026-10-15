@@ -1,0 +1,16 @@
+{
+  "n_dias": 1659,
+  "periodo": "2020-01-01 a 2024-07-16",
+  "min": 0.0,
+  "max": 3454.0,
+  "media": 612.5039180229054,
+  "mediana": 540.0,
+  "desvio_padrao": 565.5456819837405,
+  "assimetria_skew": 1.2839858987200274,
+  "curtose": 2.3798388105173474,
+  "q25": 81.5,
+  "q75": 902.0,
+  "dias_zero": 1,
+  "cv_desvio_sobre_media": 0.9233339825959956,
+  "outliers_iqr": 32
+}

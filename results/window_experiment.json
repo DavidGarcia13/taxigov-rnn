@@ -1,0 +1,46 @@
+[
+  {
+    "janela": 7,
+    "MAE": 136.60487365722656,
+    "RMSE": 210.8494110107422,
+    "R2": 0.7236391363895951,
+    "n_params": 107265,
+    "tempo_treino_s": 38.1,
+    "epocas": 22,
+    "gap_val_treino": 0.2376,
+    "amostras_treino": 1134
+  },
+  {
+    "janela": 14,
+    "MAE": 164.9107208251953,
+    "RMSE": 225.28944396972656,
+    "R2": 0.6844897835414698,
+    "n_params": 107265,
+    "tempo_treino_s": 53.9,
+    "epocas": 31,
+    "gap_val_treino": 0.2475,
+    "amostras_treino": 1127
+  },
+  {
+    "janela": 28,
+    "MAE": 161.885009765625,
+    "RMSE": 232.85745239257812,
+    "R2": 0.662936290538594,
+    "n_params": 107265,
+    "tempo_treino_s": 82.1,
+    "epocas": 44,
+    "gap_val_treino": 0.2515,
+    "amostras_treino": 1113
+  },
+  {
+    "janela": 56,
+    "MAE": 245.74298095703125,
+    "RMSE": 312.3910827636719,
+    "R2": 0.39336281441574394,
+    "n_params": 107265,
+    "tempo_treino_s": 106.6,
+    "epocas": 33,
+    "gap_val_treino": 0.6021,
+    "amostras_treino": 1085
+  }
+]

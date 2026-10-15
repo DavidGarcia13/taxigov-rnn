@@ -1,0 +1,28 @@
+# ----- Dados brutos e grandes (NAO versionar no GitHub) -----
+# Os CSVs do TaxiGOV sao grandes (centenas de MB, ultrapassam o limite de 100MB
+# por arquivo do GitHub). Baixe-os da fonte oficial (ver README) e coloque em data/raw/.
+data/raw/
+data/processed/*.csv
+data/processed/*.npz
+
+# Backup local
+*.zip
+
+# ----- Ambiente Python -----
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# ----- Artefatos de tuning pesados -----
+# Bancos SQLite do Optuna podem crescer; os resultados consolidados ficam nos JSONs.
+results/*.db
+
+# ----- Sistema / IDE -----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

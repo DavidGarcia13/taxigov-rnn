@@ -1,0 +1,263 @@
+profile: tabular-data-package
+resources:
+  - name: corridas
+    type: table
+    title: TaxiGov rides
+    description: All TaxiGov rides
+    profile: tabular-data-resource
+    path: taxigov-corridas-completo.csv
+    scheme: file
+    format: csv
+    mediatype: text/csv
+    encoding: utf-8
+    hash: sha256:b7322c0ea243d9a6fa5a3f0da47266d623ed9d918e4d51dc842bc66d1662e653
+    bytes: 521515171
+    fields: 41
+    rows: 1034895
+    schema:
+      fields:
+        - name: base_origem
+          type: string
+          title: Database of origin
+          description: Identification of the database of origin. Usually contains
+            the abbreviation of the State and a version number, e.g. TAXIGOV_DF_3.
+          constraints:
+            maxLength: 100
+            minLength: 10
+            required: true
+        - name: qru_corrida
+          type: integer
+          title: Ride code
+          description: Code that uniquely identifies the ride in the database of origin.
+            No collision with other identifiers in other databases of origin is guaranteed.
+          constraints:
+            minimum: 0
+            required: true
+        - name: orgao_nome
+          type: string
+          title: Name of body or entity
+          description: Full name of the body, without abbreviations or acronyms, as
+            stated on the SIORG system.
+          constraints:
+            required: true
+        - name: orgao_codigo_siorg
+          type: integer
+          title: SIORG code of body
+          description: Official code of the body on the SIORG system.
+          constraints:
+            minimum: 0
+            required: true
+        - name: orgao_categoria
+          type: string
+          title: Body category
+          description: 'Body or agency category. DIRETA: public body of the direct
+            administration of the federal executive branch. INDIRETA: agency of the
+            indirect federal public administration, such as independent public agencies
+            and foundations.'
+          constraints:
+            enum:
+              - DIRETA
+              - INDIRETA
+            required: true
+        - name: unidade_administrativa_nome
+          type: string
+          title: Name of administrative unit
+          description: Name of the administrative unit, in full form, without abbreviations
+            or acronyms, as stated in the SIORG system, when available. It may represent
+            either the most specific level in the body's hierarchy which has authorized
+            the ride or some other higher level.
+        - name: unidade_administrativa_codigo_siorg
+          type: integer
+          title: SIORG code of administrative unit
+          description: Official code of the administrative unit in the SIORG system.
+          constraints:
+            minimum: 0
+        - name: status
+          type: string
+          title: Status
+          description: 'Ride status. CANCELADA: The ride has been cancelled by the
+            user or requesting body. CONCLUÍDA: The ride has been concluded. CONTESTADA:
+            The ride''s occurrence or record has been disputed by the requesting body.
+            EM ANDAMENTO: The ride was in progress at the moment of data collection.
+            INTERNO: Internal verification.'
+          constraints:
+            enum:
+              - EM ANDAMENTO
+              - CANCELADA
+              - CONCLUÍDA
+              - CONTESTADA
+              - INTERNO
+            required: true
+        - name: motivo
+          type: string
+          title: Motive
+          description: 'Motive for the ride: Reunião (meeting); Transporte de documentos
+            / materiais (transportation of documents / goods); Capacitação / evento
+            (training / event); Audiência / despacho (hearing / decision making);
+            Serviço externo / técnico (external / technical service); Pesquisa de
+            preço de mercado (market price research); Deslocamento embarque / desembarque
+            (movement for boarding / disembark); Deslocamento residência / trabalho
+            (commute); Outros (others).'
+          constraints:
+            enum:
+              - Reunião
+              - Transporte de documentos / materiais
+              - Capacitação / evento
+              - Audiência / despacho
+              - Serviço externo / técnico
+              - Pesquisa de preço de mercado
+              - Deslocamento embarque / desembarque
+              - Deslocamento residência / trabalho
+              - Outros
+        - name: justificativa
+          type: string
+          title: Justification
+          description: Alleged justification for the ride.
+        - name: km_total
+          type: number
+          title: Total distance
+          description: Total traveled distance, in km, recorded in the database of
+            origin.
+          constraints:
+            minimum: 0
+        - name: km_rota_calculada
+          type: number
+          title: Calculated distance
+          description: The calculated expected distance, in km, based on a map and
+            the points of origin and destination recorded.
+          constraints:
+            minimum: 0
+        - name: valor_corrida
+          type: number
+          title: Value
+          description: Amount charged for the ride, in reais (BRL).
+          constraints:
+            minimum: 0
+        - name: data_abertura
+          type: datetime
+          title: Date of opening
+          description: Date and time of opening, representing the moment in which
+            the ride has been requested.
+        - name: data_despacho
+          type: datetime
+          title: Date of dispatch
+          description: Date and time of dispatch, representing the moment in which
+            a vehicle and driver have been attributed to the ride request.
+        - name: data_local_embarque
+          type: datetime
+          title: Date on boarding place
+          description: Date and time at the boarding location, representing the moment
+            in which the vehicle has arrived at the requested place of origin.
+        - name: data_inicio
+          type: datetime
+          title: Starting date
+          description: Date and time of start of the ride, representing the moment
+            in which the passengers boarded and the vehicle has stated the ride.
+        - name: data_final
+          type: datetime
+          title: Ending date
+          description: Date and time of the end of the ride, representing the moment
+            in which the vehicle has arrived at its destination.
+        - name: data_cancelamento
+          type: datetime
+          title: Date of cancellation
+          description: Date and time of cancellation, representing the moment in which
+            the ride has been cancelled, in case that happened.
+        - name: origem_endereco
+          type: string
+          title: Address of origin
+          description: Address of the ride's location of origin. It might represent
+            just the street address line or the complete address.
+        - name: origem_bairro
+          type: string
+          title: Neighborhood of origin
+          description: Neighborhood of the ride's location of origin.
+        - name: origem_cidade
+          type: string
+          title: City of origin
+          description: Municipality or city of the ride's location of origin.
+        - name: origem_uf
+          type: string
+          title: State of origin
+          description: Abbreviation of the federative unit (state) of the ride's place
+            of origin.
+        - name: destino_solicitado_endereco
+          type: string
+          title: Address of requested destination
+          description: Address of the ride's destination, informed on the request.
+            It might represent just the street address line or the complete address.
+        - name: destino_efetivo_endereco
+          type: string
+          title: Address of effective destination
+          description: Address of the ride's destination, informed at the effective
+            conclusion of the ride. It might represent just the street address line
+            or the complete address.
+        - name: origem_latitude
+          type: number
+          title: Latitude of origin
+          description: Latitude coordinate of the ride's location of origin.
+        - name: origem_longitude
+          type: number
+          title: Longitude of origin
+          description: Longitude coordinate of the ride's location of origin.
+        - name: destino_solicitado_latitude
+          type: number
+          title: Latitude of requested destination
+          description: Latitude coordinate of the ride's destination location informed
+            in the request.
+        - name: destino_solicitado_longitude
+          type: number
+          title: Longitude of requested destination
+          description: Longitude coordinate of the ride's destination location informed
+            in the request.
+        - name: destino_efetivo_latitude
+          type: number
+          title: Longitude of effective destination
+          description: Latitude coordinate of the ride's destination location measured
+            at the effective place of arrival.
+        - name: destino_efetivo_longitude
+          type: number
+          title: Longitude of effective destination
+          description: Longitude coordinate of the ride's destination location measured
+            at the effective place of arrival.
+        - name: avaliacao_usuario_nota
+          type: number
+          title: User's rating
+          description: Rating attributed by the user when evaluating the ride.
+        - name: avaliacao_usuario_texto
+          type: string
+          title: Text of user's rating
+          description: Text written by the user when evaluating the ride.
+        - name: veiculo_fabricante
+          type: string
+          title: Vehicle's make
+          description: Name of the vehicle's make.
+        - name: veiculo_modelo
+          type: string
+          title: Vehicle's model
+          description: Name of the vehicle's model.
+        - name: veiculo_ano_fabricacao
+          type: integer
+          title: Vehicle's year of production
+          description: Vehicle's year of production.
+        - name: veiculo_ano_modelo
+          type: integer
+          title: Vehicle's model year.
+          description: Vehicle's model year.
+        - name: veiculo_cor
+          type: string
+          title: Vehicle's color
+          description: Vehicle's color.
+        - name: veiculo_placa
+          type: string
+          title: Vehicle's license plate
+          description: Vehicle's license plate.
+        - name: ateste_setorial_data
+          type: datetime
+          title: Date of departmental attestation
+          description: Date and time when the responsible department has attested
+            that the ride has actually happened without any suspicion.
+        - name: conteste_info
+          type: string
+          title: Dispute info
+          description: Text of dispute of the ride or its record.

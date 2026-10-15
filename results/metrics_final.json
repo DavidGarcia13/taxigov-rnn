@@ -1,0 +1,76 @@
+{
+  "baselines": {
+    "naive_sazonal": {
+      "MAE": 302.569091796875,
+      "RMSE": 448.2485656738281,
+      "R2": -0.24902040259366132
+    },
+    "media_movel_7": {
+      "MAE": 284.57666015625,
+      "RMSE": 370.4654846191406,
+      "R2": 0.14684641703770718
+    }
+  },
+  "modelos": {
+    "SimpleRNN": {
+      "MAE": 183.91209411621094,
+      "RMSE": 244.93556213378906,
+      "R2": 0.6270630271849272,
+      "n_params": 141825,
+      "tempo_treino_s": 22.6,
+      "tempo_inferencia_ms": 542.9,
+      "epocas_treinadas": 29,
+      "hiperparametros": {
+        "lr": 0.0007086624038005821,
+        "n_camadas": 1,
+        "unidades": 256,
+        "dropout": 0.0,
+        "recurrent_dropout": 0.0,
+        "l2": 1.5138805956202804e-05,
+        "batch_size": 16,
+        "otimizador": "rmsprop",
+        "bidirecional": true
+      }
+    },
+    "GRU": {
+      "MAE": 129.91981506347656,
+      "RMSE": 201.11595153808594,
+      "R2": 0.748565526338399,
+      "n_params": 425985,
+      "tempo_treino_s": 37.7,
+      "tempo_inferencia_ms": 1428.5,
+      "epocas_treinadas": 31,
+      "hiperparametros": {
+        "lr": 0.0007086624038005821,
+        "n_camadas": 1,
+        "unidades": 256,
+        "dropout": 0.0,
+        "recurrent_dropout": 0.0,
+        "l2": 1.5138805956202804e-05,
+        "batch_size": 16,
+        "otimizador": "rmsprop",
+        "bidirecional": true
+      }
+    },
+    "LSTM": {
+      "MAE": 164.29722595214844,
+      "RMSE": 226.57229614257812,
+      "R2": 0.6808863529542571,
+      "n_params": 565761,
+      "tempo_treino_s": 49.2,
+      "tempo_inferencia_ms": 608.7,
+      "epocas_treinadas": 33,
+      "hiperparametros": {
+        "lr": 0.0007086624038005821,
+        "n_camadas": 1,
+        "unidades": 256,
+        "dropout": 0.0,
+        "recurrent_dropout": 0.0,
+        "l2": 1.5138805956202804e-05,
+        "batch_size": 16,
+        "otimizador": "rmsprop",
+        "bidirecional": true
+      }
+    }
+  }
+}
